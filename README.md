@@ -3,7 +3,7 @@
 - make
 
 ## How to clone
-Use `git clone --recursive git@github.com:RicoGroth/CGTutorial.git` to clone. Otherwise, the submodules (glew, glfw, glm) won't be cloned.
+Use `git clone --recursive https://github.com/RicoGroth/CGTutorial.git` to clone. Otherwise, the submodules (glew, glfw, glm) won't be cloned.
 
 ## How to build
 ### Linux
