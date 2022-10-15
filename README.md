@@ -3,7 +3,7 @@
 - make(Linux/Unix and MacOS) or Visual Studio(Windows)
 
 ## How to clone
-Use `git clone --recursive https://github.com/RicoGroth/CGTutorial.git` to clone. Otherwise, the submodules (glew, glfw, glm) won't be cloned.
+Use `git clone --recursive https://github.com/RicoGroth/CGTutorial.git` to clone. Otherwise, the submodules ([glew](https://github.com/Perlmint/glew-cmake), [glfw](https://github.com/glfw/glfw), [glm](https://github.com/g-truc/glm)) won't be cloned.
 
 ## How to build
 ### Linux/Unix and MacOS
