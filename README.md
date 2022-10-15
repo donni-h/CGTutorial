@@ -1,3 +1,7 @@
+## Prerequisites
+- cmake
+- make
+
 ## How to clone
 Use `git clone --recursive git@github.com:RicoGroth/CGTutorial.git` to clone. Otherwise, the submodules (glew, glfw, glm) won't be cloned.
 
@@ -7,3 +11,6 @@ Your current directory has to be `<Your-clone-path>/CGTutorial/`.
 2. Use make to build the project: `cd build && make`
 
 You should end up with an executable `<Your-clone-path>/CGTutorial/build/CGTutorial`.
+
+---
+Inspired by https://github.com/ArthurSonzogni/OpenGL_CMake_Skeleton
