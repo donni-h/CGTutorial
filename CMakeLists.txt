@@ -10,12 +10,19 @@ add_executable(${CMAKE_PROJECT_NAME}
 set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall)
 
+set(OpenGL_GL_PREFERENCE GLVND)
+find_package(OpenGL REQUIRED COMPONENTS OpenGL EGL GLX)
+if(NOT OpenGL_FOUND)
+	message("OpenGL libraries not found")
+endif(NOT OpenGL_FOUND)
+
 add_definitions(-DGLEW_STATIC)
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
 add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
+  PRIVATE ${OpenGL_LIBRARIES}
   PRIVATE glfw
   PRIVATE libglew_static
   PRIVATE glm
@@ -27,6 +34,7 @@ configure_file(
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME}
+  PRIVATE ${OpenGL_INCLUDE_DIRS}
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
   PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include
 )
