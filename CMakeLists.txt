@@ -11,7 +11,7 @@ set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall)
 
 set(OpenGL_GL_PREFERENCE GLVND)
-find_package(OpenGL REQUIRED)
+find_package(OpenGL REQUIRED COMPONENTS OpenGL EGL GLX)
 if(NOT OpenGL_FOUND)
 	message("OpenGL libraries not found")
 endif(NOT OpenGL_FOUND)
