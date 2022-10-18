@@ -7,7 +7,7 @@ Use `git clone --recursive https://github.com/RicoGroth/CGTutorial.git` to clone
 
 ## How to build
 ### Linux/Unix and MacOS
-First, you have to install some standard tools: `libgl1-mesa-dev`, `libxrandr-dev,` `libxinerama-dev`, `libxcursor-dev`, `libxi-dev`
+First, you have to install some standard tools: `libgl1-mesa-dev`, `libxrandr-dev,` `libxinerama-dev`, `libxcursor-dev`, `libxi-dev`  
 Your current directory has to be `CGTutorial/`.  
 1. Create the Makefile: `cmake -S . -B build`
 2. Use make to build the project: `cd build && make`
