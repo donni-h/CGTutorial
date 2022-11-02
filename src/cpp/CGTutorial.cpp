@@ -53,7 +53,9 @@ void error_callback(int error, const char* description)
 	// dem Wert null terminiert werden.
 	fputs(description, stderr);
 }
-
+    float winkelX = 0.0f;
+    float winkelY = 0.0f;
+    float winkelZ = 0.0f;
 // Diese Funktion wird ebenfalls �ber Funktionspointer der GLFW-Bibliothek �bergeben.
 // (Die Signatur ist hier besonders wichtig. Wir sehen, dass hier drei Parameter definiert
 //  werden m�ssen, die gar nicht verwendet werden.)
@@ -72,8 +74,25 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		// dass wir das Fenster schliessen wollen (siehe Schleife unten).
 		glfwSetWindowShouldClose(window, GL_TRUE);
 		break;
-
-	default:
+        case GLFW_KEY_UP:
+            winkelX += 1;
+            break;
+        case GLFW_KEY_DOWN:
+            winkelX -= 1;
+            break;
+        case GLFW_KEY_RIGHT:
+            winkelY += 1;
+            break;
+        case GLFW_KEY_LEFT:
+            winkelY -= 1;
+            break;
+        case GLFW_KEY_R:
+            winkelZ += 1;
+            break;
+        case GLFW_KEY_T:
+            winkelZ -= 1;
+            break;
+        default:
 		break;
 	}
 }
@@ -182,10 +201,12 @@ int main(void)
 	// Alles ist vorbereitet, jetzt kann die Eventloop laufen...
 	while (!glfwWindowShouldClose(window))
 	{
+
+        glEnable(GL_DEPTH_TEST);
 		// L�schen des Bildschirms (COLOR_BUFFER), man kann auch andere Speicher zus�tzlich l�schen, 
 		// kommt in sp�teren �bungen noch...
 		// Per Konvention sollte man jedes Bild mit dem L�schen des Bildschirms beginnen, muss man aber nicht...
-		glClear(GL_COLOR_BUFFER_BIT);	
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Einstellen der Geometrischen Transformationen
 		// Wir verwenden dazu die Funktionen aus glm.h
@@ -207,7 +228,9 @@ int main(void)
 		// Modelmatrix : Hier auf Einheitsmatrix gesetzt, was bedeutet, dass die Objekte sich im Ursprung
 		// des Weltkoordinatensystems befinden.
 		Model = glm::mat4(1.0f);
-
+        Model = glm::rotate(Model, winkelX, glm::vec3(1,0,0));
+        Model = glm::rotate(Model, winkelY, glm::vec3(0,1,0));
+        Model = glm::rotate(Model, winkelZ, glm::vec3(0,0,1));
 		// Diese Informationen (Projection, View, Model) m�ssen geeignet der Grafikkarte �bermittelt werden,
 		// damit sie beim Zeichnen von Objekten ber�cksichtigt werden k�nnen.
 		sendMVP();
@@ -218,7 +241,7 @@ int main(void)
 		// Das werden wir uns sp�ter noch genauer anschauen. (Schauen Sie sich die schwarzen Linien genau an,
 		// und �berlegen Sie sich, dass das wirklich ein W�rfel ist, der perspektivisch verzerrt ist.)
 		// Die Darstellung nennt man �brigens "im Drahtmodell".
-		drawWireCube();		
+		drawCube();
 
 		// Bildende. 
 		// Bilder werden in den Bildspeicher gezeichnet (so schnell wie es geht.). 
